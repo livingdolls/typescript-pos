@@ -1,0 +1,25 @@
+GET http://localhost:8800/api/v1/categori
+
+###
+POST http://localhost:8800/api/v1/categori
+Content-Type: application/json
+
+{
+    "nama": "Rumah fgse",
+    "keterangan": "sfef"
+}
+
+###
+PUT http://localhost:8800/api/v1/categori/a9bafb6b-96ca-41d1-8408-686a79500bd6
+Content-Type: application/json
+
+{
+    "nama": "Perhiasan",
+    "keterangan": "Emas dan perak"
+}
+
+###
+GET http://localhost:8800/api/v1/categori/a9bafb6b-96ca-41d1-8408-686a79500bd6
+
+###
+DELETE http://localhost:8800/api/v1/categori/dadwd
