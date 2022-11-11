@@ -6,6 +6,10 @@ import helmet from "helmet";
 import cors from "cors";
 import dotenv from "dotenv";
 import CategoriRoute from "./routes/CategoriRoute";
+import AuthRoute from "./routes/Auth.route";
+import UserRoute from "./routes/User.route";
+import SatuanRoute from "./routes/Satuan.route";
+import BarangRoute from "./routes/Barang.route";
 
 const app: Application = express();
 dotenv.config();
@@ -23,6 +27,10 @@ app.route("/").get((req: Request, res: Response) => {
 });
 
 app.use("/api/v1/categori", CategoriRoute);
+app.use("/api/v1/auth", AuthRoute);
+app.use("/api/v1/user", UserRoute);
+app.use("/api/v1/satuan", SatuanRoute);
+app.use("/api/v1/barang", BarangRoute);
 
 // Error Handle
 

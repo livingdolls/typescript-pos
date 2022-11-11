@@ -13,6 +13,7 @@ import {
 	getAllCategoris,
 	UpdateCategori,
 } from "../services/Categori.service.js";
+import { response } from "../utils/CustomResponse.js";
 
 export const getAllCategori = async (
 	req: Request,
@@ -22,11 +23,7 @@ export const getAllCategori = async (
 	try {
 		const data = await getAllCategoris();
 
-		res.status(201).json({
-			status: 201,
-			code: "Success",
-			data: data,
-		});
+		response(201, true, data, "get all categori", res);
 	} catch (error) {
 		next(error);
 	}
@@ -40,11 +37,7 @@ export const addCategori = async (
 	try {
 		const Categori = await CreateCategori(req.body);
 
-		res.status(201).json({
-			status: 201,
-			code: "Success",
-			msg: "Berhasil menambah data kategori",
-		});
+		response(201, true, [], "Berhasil menambah kategori!", res);
 	} catch (error) {
 		next(error);
 	}

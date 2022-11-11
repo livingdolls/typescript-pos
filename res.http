@@ -23,3 +23,95 @@ GET http://localhost:8800/api/v1/categori/a9bafb6b-96ca-41d1-8408-686a79500bd6
 
 ###
 DELETE http://localhost:8800/api/v1/categori/dadwd
+
+###
+POST http://localhost:8800/api/v1/auth
+Content-Type: application/json
+
+{
+    "nama": "Nanang Setiawan",
+    "email": "nanang@mail.com",
+    "password": "12345678"
+
+}
+
+###
+GET http://localhost:8800/api/v1/user
+
+###
+GET http://localhost:8800/api/v1/user/882266e1-fb86-4e28-9a68-ac0d6a3d6283
+
+###
+DELETE  http://localhost:8800/api/v1/user/1234567
+
+###
+PUT http://localhost:8800/api/v1/user/882266e1-fb86-4e28-9a68-ac0d6a3d6283
+Content-Type: application/json
+
+{
+    "nama": "Nanang Hirate",
+    "email": "yurina@mail.com",
+    "password": "12345678",
+    "avatar" :"https://cdn.idntimes.com/content-images/community/2022/07/800-800-102400-6-6a67b520ee3ebcc423c99333ede97ee3-707e8c6c19374607064f32578e27a733_600x400.jpg"
+}
+
+###
+POST http://localhost:8800/api/v1/satuan
+Content-Type: application/json
+
+{
+    "nama": "Box",
+    "keterangan": "Satu item"
+}
+
+###
+GET http://localhost:8800/api/v1/satuan
+
+###
+GET http://localhost:8800/api/v1/satuan/daw
+
+###
+PUT http://localhost:8800/api/v1/satuan/daw
+Content-Type: application/json
+
+{
+    "nama": "Boxx",
+    "keterangan": "50 item"
+}
+
+###
+DELETE http://localhost:8800/api/v1/satuan/daw
+
+###
+POST http://localhost:8800/api/v1/barang
+Content-Type: application/json
+
+{
+    "nama": "Kopi Lawak",
+    "harga": 7000,
+    "qty" :102,
+    "_id_satuan" : "36e623ad-952e-4e15-a204-d89db7d9aff4",
+    "_id_kategori" : "67d9a679-e268-4d06-ab07-ede521f2f5c4"
+}
+
+###
+GET http://localhost:8800/api/v1/barang/d6f1eb03-b890-429a-8dbd-17593b6333db
+
+
+###
+GET http://localhost:8800/api/v1/barang/
+
+###
+PUT  http://localhost:8800/api/v1/barang/d6f1eb03-b890-429a-8dbd-17593b6333db
+Content-Type: application/json
+
+{
+    "nama": "Kopi Liar",
+    "harga": 17000,
+    "qty" :50,
+    "_id_satuan" : "36e623ad-952e-4e15-a204-d89db7d9aff4",
+    "_id_kategori" : "67d9a679-e268-4d06-ab07-ede521f2f5c4"
+}
+
+###
+DELETE  http://localhost:8800/api/v1/barang/dadwadwa
