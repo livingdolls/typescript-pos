@@ -9,7 +9,21 @@ import conn from "../config/db";
 
 export const allBarangService = async () => {
 	try {
-		const data = await conn.query(`SELECT * FROM barang`);
+		const data = await conn.query(
+			`SELECT _id_barang,b.nama,harga,qty,s.nama as _id_satuan,k.nama as _id_kategori FROM barang as b JOIN kategori as k ON b._id_kategori = k._id_kategori JOIN satuan as s on b._id_satuan = s._id_satuan`
+		);
+
+		return data[0];
+	} catch (error: any) {
+		throw new Error(error);
+	}
+};
+
+export const allBarangServiceReal = async (
+	params: readBarangType["params"]
+) => {
+	try {
+		const data = await conn.query(`SELECT * FROM barang WHERE ?`, [params]);
 
 		return data[0];
 	} catch (error: any) {

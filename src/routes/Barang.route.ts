@@ -4,6 +4,7 @@ import {
 	deleteBarang,
 	findBarang,
 	getAllBarang,
+	getBarangReal,
 	updateBarang,
 } from "../controllers/Barang.controller";
 import { SchemaValidator } from "../middleware/SchemaValidator.middleware";
@@ -16,6 +17,7 @@ import {
 const router = express.Router();
 
 router.get("/", getAllBarang);
+router.get("/barang/:_id_barang", getBarangReal);
 router.post("/", SchemaValidator(createBarangSchema), CreateBarang);
 router.get("/:_id_barang", SchemaValidator(readBarangSchema), findBarang);
 router.put("/:_id_barang", SchemaValidator(updateBarangSchema), updateBarang);

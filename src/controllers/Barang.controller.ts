@@ -8,6 +8,7 @@ import {
 import { CreateUser } from "../services/Auth.service";
 import {
 	allBarangService,
+	allBarangServiceReal,
 	createBarangService,
 	deleteBarangService,
 	findBarangService,
@@ -53,6 +54,20 @@ export const findBarang = async (
 		if (data.length === 0) {
 			return response(404, false, [], "barang not found!", res);
 		}
+
+		response(201, true, data, "find one data success!", res);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const getBarangReal = async (
+	req: Request<readBarangType["params"]>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const data = await allBarangServiceReal(req.params);
 
 		response(201, true, data, "find one data success!", res);
 	} catch (error) {

@@ -21,7 +21,7 @@ export const CreateSatuan = async (
 ) => {
 	try {
 		const respons = await createSatuanService(req.body);
-		console.log(respons);
+
 		response(201, true, [], "created satuan success!", res);
 	} catch (error) {
 		next(error);
@@ -74,7 +74,7 @@ export const updateSatuan = async (
 		}
 
 		await updateSatuanService(req.params, req.body);
-		return response(201, true, [], "get satuan", res);
+		return response(201, true, [], "berhasil edit satuan!", res);
 	} catch (error) {
 		next(error);
 	}
