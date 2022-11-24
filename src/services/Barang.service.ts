@@ -34,7 +34,6 @@ export const allBarangServiceReal = async (
 export const createBarangService = async (params: createBarangType["body"]) => {
 	try {
 		const data = { _id_barang: uuid(), ...params };
-		console.log(data);
 
 		return conn.query(`INSERT INTO barang SET ?`, [data]);
 	} catch (error: any) {

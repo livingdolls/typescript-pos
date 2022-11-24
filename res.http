@@ -118,3 +118,46 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:8800/api/v1/barang/dadwadwa
+
+TRANSAKSI
+
+###
+GET  http://localhost:8800/api/v1/transaksi/
+
+###
+POST  http://localhost:8800/api/v1/transaksi
+Content-Type: application/json
+
+{
+    "_id_admin": "daw",
+    "invoice": 20210520002,
+    "sub_total": 100000,
+    "diskon": 20,
+    "total": 80000,
+    "detail_transaksi": [
+        {
+        "_id_master_transaksi" : 1,
+        "_id_barang" : "sfsffsfsefsefese",
+        "harga": 20,
+        "qty": 5,
+        "sub_total" : 3434343
+        },
+                {
+        "_id_master_transaksi" : 1,
+        "_id_barang" : "sfsffsfsefsefese",
+        "harga": 100,
+        "qty": 5,
+        "sub_total" : 3434343
+        },
+                {
+        "_id_master_transaksi" : 1,
+        "_id_barang" : "sfsffsfsefsefese",
+        "harga": 5000,
+        "qty": 1,
+        "sub_total" : 3434343
+        }
+    ]
+}
+
+###
+DELETE  http://localhost:8800/api/v1/transaksi/0e326d28-b3bb-46c9-81c9-6a97b2706d45

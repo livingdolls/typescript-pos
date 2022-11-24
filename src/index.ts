@@ -10,6 +10,7 @@ import AuthRoute from "./routes/Auth.route";
 import UserRoute from "./routes/User.route";
 import SatuanRoute from "./routes/Satuan.route";
 import BarangRoute from "./routes/Barang.route";
+import TransaksiRoute from "./routes/Transaksi.route";
 
 const app: Application = express();
 dotenv.config();
@@ -31,6 +32,7 @@ app.use("/api/v1/auth", AuthRoute);
 app.use("/api/v1/user", UserRoute);
 app.use("/api/v1/satuan", SatuanRoute);
 app.use("/api/v1/barang", BarangRoute);
+app.use("/api/v1/transaksi", TransaksiRoute);
 
 // Error Handle
 
