@@ -3,7 +3,10 @@ import { v4 as uuid } from "uuid";
 import {
 	createMainTransaksiType,
 	deleteMasterTransaksiType,
+	detailTransaksiType,
 } from "../schema/master_transaksi.schema";
+import { detail_transaksi } from "../schema/Detail_Transaksi..schema";
+import { findBarangService } from "./Barang.service";
 
 export const getTransaksiService = async () => {
 	try {
@@ -26,14 +29,6 @@ export const findTransaksiService = async (_id: deleteMasterTransaksiType) => {
 	} catch (error: any) {
 		throw new Error(error);
 	}
-};
-
-type detail_transaksi = {
-	_id: number;
-	_id_barang: string;
-	harga: number;
-	qty: number;
-	sub_total: number;
 };
 
 export const postTransaksiService = async (data: createMainTransaksiType) => {
@@ -60,6 +55,18 @@ export const postTransaksiService = async (data: createMainTransaksiType) => {
 				const _id_master_transaksi = post_transaksi[0].insertId;
 				const detail = { ...e, _id_master_transaksi, sub_total };
 
+				// Update Barang
+				const data_barang: any = await findBarangService({
+					_id_barang: e._id_barang,
+				});
+				const new_qty_barang = data_barang[0].qty - e.qty;
+				const _id_barang = data_barang[0]._id_barang;
+				await conn.query(
+					`UPDATE barang SET qty = ? WHERE _id_barang = ?`,
+					[new_qty_barang, _id_barang]
+				);
+				// End Update Barang
+
 				await conn.query(`INSERT INTO detail_transaksi SET ?`, [
 					detail,
 				]);
@@ -83,6 +90,19 @@ export const deleteTransaksiService = async (
 		]);
 
 		return del;
+	} catch (error: any) {
+		throw new Error(error);
+	}
+};
+
+export const detailTransaksiService = async (_id: detailTransaksiType) => {
+	try {
+		const [row] = await conn.query(
+			`SELECT * FROM detail_transaksi WHERE ?`,
+			[_id]
+		);
+
+		return row;
 	} catch (error: any) {
 		throw new Error(error);
 	}

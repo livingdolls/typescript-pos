@@ -35,10 +35,18 @@ export const deleteMasterTransaksiSchema = object({
 	...payloadParams,
 });
 
+export const detailTransaksiSchema = object({
+	...payloadParams,
+});
+
 export type createMainTransaksiType = TypeOf<
 	typeof createMainTransaksiSchema
 >["body"];
 
 export type deleteMasterTransaksiType = TypeOf<
 	typeof deleteMasterTransaksiSchema
+>["params"];
+
+export type detailTransaksiType = TypeOf<
+	typeof detailTransaksiSchema
 >["params"];

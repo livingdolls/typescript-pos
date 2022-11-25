@@ -137,21 +137,21 @@ Content-Type: application/json
     "detail_transaksi": [
         {
         "_id_master_transaksi" : 1,
-        "_id_barang" : "sfsffsfsefsefese",
+        "_id_barang" : "983e0c15-c606-46ea-a9a7-644d51b0b3d6",
         "harga": 20,
-        "qty": 5,
+        "qty": 1,
         "sub_total" : 3434343
         },
                 {
         "_id_master_transaksi" : 1,
-        "_id_barang" : "sfsffsfsefsefese",
+        "_id_barang" : "9b81c1a8-c851-4dc7-a629-46c59f9acc74",
         "harga": 100,
-        "qty": 5,
+        "qty": 1,
         "sub_total" : 3434343
         },
                 {
         "_id_master_transaksi" : 1,
-        "_id_barang" : "sfsffsfsefsefese",
+        "_id_barang" : "a021b101-d26a-46c8-9eca-06a04b686abd",
         "harga": 5000,
         "qty": 1,
         "sub_total" : 3434343
@@ -161,3 +161,9 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:8800/api/v1/transaksi/0e326d28-b3bb-46c9-81c9-6a97b2706d45
+
+###
+GET http://localhost:8800/api/v1/transaksi/detail-transaksi/44
+
+###
+DELETE http://localhost:8800/api/v1/transaksi/detail-transaksi/detail/22

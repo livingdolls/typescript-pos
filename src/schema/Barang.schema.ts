@@ -37,3 +37,12 @@ export type createBarangType = TypeOf<typeof createBarangSchema>;
 export type readBarangType = TypeOf<typeof readBarangSchema>;
 export type updateBarangType = TypeOf<typeof updateBarangSchema>;
 export type deleteBarangType = TypeOf<typeof deleteBarangSchema>;
+
+export type barangWithId = {
+	_id_barang: string;
+	nama: string;
+	harga: number;
+	qty: number;
+	_id_satuan: string;
+	_id_kategori: string;
+};
