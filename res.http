@@ -167,3 +167,6 @@ GET http://localhost:8800/api/v1/transaksi/detail-transaksi/44
 
 ###
 DELETE http://localhost:8800/api/v1/transaksi/detail-transaksi/detail/22
+
+###
+DELETE http://localhost:8800/api/v1/transaksi/detail-transaksi/55

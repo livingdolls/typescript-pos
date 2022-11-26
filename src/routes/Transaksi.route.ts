@@ -1,5 +1,8 @@
 import express from "express";
-import { cancelDetailTransaksi } from "../controllers/Detail.transaksi.controller";
+import {
+	cancelDetailTransaksi,
+	cancelTransaksi,
+} from "../controllers/Detail.transaksi.controller";
 import {
 	deleteTransaksi,
 	detailTransaksi,
@@ -27,6 +30,7 @@ router.get(
 	detailTransaksi
 );
 
+router.delete("/detail-transaksi/:_id", cancelTransaksi);
 router.delete("/detail-transaksi/detail/:_id", cancelDetailTransaksi);
 
 export default router;

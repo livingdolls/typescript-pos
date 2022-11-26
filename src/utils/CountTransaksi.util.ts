@@ -1,4 +1,7 @@
-import { detail_transaksi } from "../schema/Detail_Transaksi..schema";
+import {
+	detailTransaksiType,
+	detail_transaksi,
+} from "../schema/Detail_Transaksi..schema";
 
 export const CountTransaksi = (
 	data: Omit<detail_transaksi[], "_id" | "_id_barang">
@@ -11,4 +14,17 @@ export const CountTransaksi = (
 	});
 
 	return total;
+};
+
+export const CountTransaksiSubTransaksi = (
+	transaksi: detailTransaksiType[]
+) => {
+	let data: Array<detailTransaksiType> = [];
+	transaksi.forEach((e) => {
+		let sub_total = e.qty * e.harga;
+		let set = { ...e, sub_total };
+		data.push(set);
+	});
+
+	return data;
 };

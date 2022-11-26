@@ -51,9 +51,8 @@ export const postTransaksiService = async (data: createMainTransaksiType) => {
 
 		if (post_transaksi[0].affectedRows === 1) {
 			tr.forEach(async (e: detail_transaksi) => {
-				const sub_total = e.harga * e.qty;
 				const _id_master_transaksi = post_transaksi[0].insertId;
-				const detail = { ...e, _id_master_transaksi, sub_total };
+				const detail = { ...e, _id_master_transaksi };
 
 				// Update Barang
 				const data_barang: any = await findBarangService({

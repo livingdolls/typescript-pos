@@ -10,7 +10,10 @@ import {
 	getTransaksiService,
 	postTransaksiService,
 } from "../services/Transaksi.service";
-import { CountTransaksi } from "../utils/CountTransaksi.util";
+import {
+	CountTransaksi,
+	CountTransaksiSubTransaksi,
+} from "../utils/CountTransaksi.util";
 import { response } from "../utils/CustomResponse";
 
 export const getAllTransaksi = async (
@@ -37,8 +40,17 @@ export const postTransaksi = async (
 		const ttl_bayar = CountTransaksi(data.detail_transaksi);
 		const diskon = (data.diskon / 100) * ttl_bayar;
 		const total = ttl_bayar - diskon;
+		const detail_transaksi = CountTransaksiSubTransaksi(
+			data.detail_transaksi
+		);
 
-		const new_data = { ...data, sub_total: ttl_bayar, total: total };
+		const new_data = {
+			...data,
+			sub_total: ttl_bayar,
+			total,
+			detail_transaksi,
+		};
+
 		const post_data = await postTransaksiService(new_data);
 
 		return response(201, true, [], post_data.msg, res);
