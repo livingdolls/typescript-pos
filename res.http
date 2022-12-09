@@ -25,7 +25,7 @@ GET http://localhost:8800/api/v1/categori/a9bafb6b-96ca-41d1-8408-686a79500bd6
 DELETE http://localhost:8800/api/v1/categori/dadwd
 
 ###
-POST http://localhost:8800/api/v1/auth
+POST http://localhost:8800/api/v1/auth/register
 Content-Type: application/json
 
 {
@@ -84,6 +84,7 @@ DELETE http://localhost:8800/api/v1/satuan/daw
 
 ###
 POST http://localhost:8800/api/v1/barang
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWRfdXNlciI6IjM3MjJhYzc5LTIyYzktNDNmMy1hOTYxLTg2NzZjMTY5NDU1MCIsIm5hbWEiOiJOYW5hbmcgU2V0aWF3YW4iLCJlbWFpbCI6Im5hbmFuZ0BtYWlsLmNvbSIsImlzU3VwZXJBZG1pbiI6MCwiaWF0IjoxNjcwNTc0OTEzLCJleHAiOjE2NzA1NzQ5MzN9.loiEARHr4gBo3LS6tT55So4KOe-XHOFPAvJVSjkjumc
 Content-Type: application/json
 
 {
@@ -95,7 +96,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8800/api/v1/barang/d6f1eb03-b890-429a-8dbd-17593b6333db
+GET http://localhost:8800/api/v1/barang/19dec8e1-05e2-4dc1-a001-520aa377988b
 
 
 ###
@@ -137,22 +138,15 @@ Content-Type: application/json
     "detail_transaksi": [
         {
         "_id_master_transaksi" : 1,
-        "_id_barang" : "983e0c15-c606-46ea-a9a7-644d51b0b3d6",
+        "_id_barang" : "ad68b5c5-5818-45e3-b06d-00e3d9746ef5",
         "harga": 20,
         "qty": 1,
         "sub_total" : 3434343
         },
                 {
         "_id_master_transaksi" : 1,
-        "_id_barang" : "9b81c1a8-c851-4dc7-a629-46c59f9acc74",
+        "_id_barang" : "ad68b5c5-5818-45e3-b06d-00e3d9746ef5",
         "harga": 100,
-        "qty": 1,
-        "sub_total" : 3434343
-        },
-                {
-        "_id_master_transaksi" : 1,
-        "_id_barang" : "a021b101-d26a-46c8-9eca-06a04b686abd",
-        "harga": 5000,
         "qty": 1,
         "sub_total" : 3434343
         }
@@ -170,3 +164,20 @@ DELETE http://localhost:8800/api/v1/transaksi/detail-transaksi/detail/22
 
 ###
 DELETE http://localhost:8800/api/v1/transaksi/detail-transaksi/55
+
+Login
+###
+POST http://localhost:8800/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "nanang@mail.com",
+    "password": "12345678"
+}
+
+###
+GET http://localhost:8800/api/v1/barang/19dec8e1-05e2-4dc1-a001-520aa377988b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWRfdXNlciI6IjM3MjJhYzc5LTIyYzktNDNmMy1hOTYxLTg2NzZjMTY5NDU1MCIsIm5hbWEiOiJOYW5hbmcgU2V0aWF3YW4iLCJlbWFpbCI6Im5hbmFuZ0BtYWlsLmNvbSIsImlzU3VwZXJBZG1pbiI6MCwiaWF0IjoxNjcwNTc4NDI0LCJleHAiOjE2NzA1Nzg0NDR9.9eIIJISThoPsv_1QyHs9Qr0znATiKBn5m9t73GGrWqw
+
+###
+GET http://localhost:8800/api/v1/auth/token

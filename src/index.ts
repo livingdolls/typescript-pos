@@ -5,6 +5,7 @@ import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import CategoriRoute from "./routes/CategoriRoute";
 import AuthRoute from "./routes/Auth.route";
 import UserRoute from "./routes/User.route";
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
 app.use(compression());
+app.use(cookieParser());
 
 // Routes
 app.route("/").get((req: Request, res: Response) => {

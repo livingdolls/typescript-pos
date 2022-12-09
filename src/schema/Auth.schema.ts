@@ -29,4 +29,18 @@ export const CreateUserSchema = object({
 	...payloadBody,
 });
 
+export const LoginSchema = object({
+	body: object({
+		email: string({
+			required_error: "Email harus di isi!",
+			invalid_type_error: "Masukkan huruf",
+		}).email(),
+		password: string({
+			required_error: "Password harus di isi!",
+			invalid_type_error: "Masukkan huruf dan angka",
+		}).min(6, "Password harus lebih dari 6 karakter"),
+	}),
+});
+
 export type CreateUserType = TypeOf<typeof CreateUserSchema>;
+export type LoginUserType = TypeOf<typeof LoginSchema>;

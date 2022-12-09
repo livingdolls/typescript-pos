@@ -8,6 +8,7 @@ import {
 	updateBarang,
 } from "../controllers/Barang.controller";
 import { SchemaValidator } from "../middleware/SchemaValidator.middleware";
+import { VerifyToken } from "../middleware/ValidasiToken.middleware";
 import {
 	createBarangSchema,
 	deleteBarangSchema,
@@ -17,9 +18,19 @@ import {
 const router = express.Router();
 
 router.get("/", getAllBarang);
-router.get("/barang/:_id_barang", getBarangReal);
-router.post("/", SchemaValidator(createBarangSchema), CreateBarang);
-router.get("/:_id_barang", SchemaValidator(readBarangSchema), findBarang);
+router.get("/barang/:_id_barang", VerifyToken, getBarangReal);
+router.post(
+	"/",
+	VerifyToken,
+	SchemaValidator(createBarangSchema),
+	CreateBarang
+);
+router.get(
+	"/:_id_barang",
+	VerifyToken,
+	SchemaValidator(readBarangSchema),
+	findBarang
+);
 router.put("/:_id_barang", SchemaValidator(updateBarangSchema), updateBarang);
 router.delete(
 	"/:_id_barang",
