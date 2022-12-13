@@ -1,6 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { CreateUserType, LoginUserType } from "../schema/Auth.schema";
-import { CreateUser, FindUser, RefreshToken } from "../services/Auth.service";
+import {
+	CreateUser,
+	FindUser,
+	getRefreshToken,
+	RefreshToken,
+} from "../services/Auth.service";
 import { response } from "../utils/CustomResponse";
 import { ComparePassword, HashString } from "../utils/HashString";
 import jwt from "jsonwebtoken";
@@ -32,7 +37,7 @@ export const Login = async (
 ) => {
 	try {
 		const findUser: any = await FindUser(req.body);
-		console.log(findUser.length);
+
 		if (findUser.length === 0) {
 			return response(404, false, [], "user not found!", res);
 		}
@@ -52,18 +57,12 @@ export const Login = async (
 		const refresh = process.env.REFRESH_TOKEN || "refreshsupersecret";
 
 		// Buat token
-		const accessToken = jwt.sign(
-			{ _id_user, nama, email, isSuperAdmin },
-			token,
-			{ expiresIn: "20s" }
-		);
+		const accessToken = jwt.sign({ _id_user }, token, { expiresIn: "25s" });
 
 		// buat refreshtoken
-		const refreshToken = jwt.sign(
-			{ _id_user, nama, email, isSuperAdmin },
-			refresh,
-			{ expiresIn: "1d" }
-		);
+		const refreshToken = jwt.sign({ _id_user }, refresh, {
+			expiresIn: "1d",
+		});
 
 		const reftoken = { _id_user: _id_user, refresh_token: refreshToken };
 
@@ -73,11 +72,38 @@ export const Login = async (
 		// setCookies
 		res.cookie("refreshToken", refreshToken, {
 			httpOnly: true,
-			maxAge: 2 * 60 * 60 * 1000,
+			maxAge: 24 * 60 * 60 * 1000,
+			secure: false,
 		});
 
 		res.json({ accessToken });
-	} catch (error) {
-		console.log("controller", error);
+	} catch (error: any) {
+		throw new Error(error);
 	}
+};
+
+export const Logout = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const refreshToken = req.cookies.refreshToken;
+
+	// jika token tidak ada
+	if (!refreshToken) res.sendStatus(204);
+
+	// cari user berdasarkan refresh token
+	const findUser: any = await getRefreshToken(refreshToken);
+
+	// jika tidak ketemu
+	if (findUser.length === 0) res.sendStatus(204);
+
+	// update refresh token null
+	const { _id_user } = findUser[0];
+	const data = { _id_user: _id_user, refresh_token: null };
+	await RefreshToken(data);
+
+	// Clear cookies
+	res.clearCookie("refreshToken");
+	return res.sendStatus(200);
 };

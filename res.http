@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
     "nama": "Nanang Setiawan",
-    "email": "nanang@mail.com",
+    "email": "yurina@mail.com",
     "password": "12345678"
 
 }
@@ -60,7 +60,7 @@ POST http://localhost:8800/api/v1/satuan
 Content-Type: application/json
 
 {
-    "nama": "Box",
+    "nama": "Boxx",
     "keterangan": "Satu item"
 }
 
@@ -171,13 +171,16 @@ POST http://localhost:8800/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "nanang@mail.com",
-    "password": "12345678"
+    "email": "nnnnn@gmail.com",
+    "password": "111111"
 }
 
 ###
 GET http://localhost:8800/api/v1/barang/19dec8e1-05e2-4dc1-a001-520aa377988b
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWRfdXNlciI6IjM3MjJhYzc5LTIyYzktNDNmMy1hOTYxLTg2NzZjMTY5NDU1MCIsIm5hbWEiOiJOYW5hbmcgU2V0aWF3YW4iLCJlbWFpbCI6Im5hbmFuZ0BtYWlsLmNvbSIsImlzU3VwZXJBZG1pbiI6MCwiaWF0IjoxNjcwNTc4NDI0LCJleHAiOjE2NzA1Nzg0NDR9.9eIIJISThoPsv_1QyHs9Qr0znATiKBn5m9t73GGrWqw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWRfdXNlciI6IjM3MjJhYzc5LTIyYzktNDNmMy1hOTYxLTg2NzZjMTY5NDU1MCIsImlhdCI6MTY3MDYzNzg1MCwiZXhwIjoxNjcwNzI0MjUwfQ.cnmr-QudOTYOCybbMXsmnAqFGqPFgz4rKRuf6cpAgK0
 
 ###
 GET http://localhost:8800/api/v1/auth/token
+
+###
+DELETE http://localhost:8800/api/v1/auth/logout

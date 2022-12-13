@@ -26,7 +26,7 @@ export const FindUser = async (email: LoginUserType["body"]) => {
 };
 type refresh = {
 	_id_user: string;
-	refresh_token: string;
+	refresh_token: string | null;
 };
 export const RefreshToken = async (params: refresh) => {
 	try {
